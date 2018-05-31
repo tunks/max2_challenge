@@ -48,15 +48,18 @@ public  class ParserFactoryImpl implements BaseParserFactory{
 	 ***/
 	@SuppressWarnings("rawtypes")
 	private BaseFormatter getCSVFormatters() {
-		    CSVFomatter1 formatter1 = new CSVFomatter1(FormatPattern.getFormatPattern(1),dataHandler);
-		    CSVFomatter1 formatter2 = new CSVFomatter1(FormatPattern.getFormatPattern(2),dataHandler);
-		    CSVFomatter1 formatter3 = new CSVFomatter1(FormatPattern.getFormatPattern(3),dataHandler);
-		    CSVFomatter1 formatter4 = new CSVFomatter1(FormatPattern.getFormatPattern(4),dataHandler);    
-		    //create a chain among the the different CSV formatters
-		    formatter1.setNextFormatter(formatter2);
-		    formatter2.setNextFormatter(formatter3);
-		    formatter3.setNextFormatter(formatter4);
-		    return formatter1;
+		    int i=1;
+		    CSVFomatter1 formatter = new CSVFomatter1(FormatPattern.getFormatPattern(i),dataHandler);
+		    CSVFomatter1 chainedFormatter = formatter,
+		    		         nextFormatter ;
+		    //Create a dynamic chain of the formatters -- Chain of Responsibility(COR)
+		    for(i = i + 1; i<=FormatPattern.DATA_PATTERNS.size(); i++) {
+		    	    nextFormatter = new CSVFomatter1(FormatPattern.getFormatPattern(i),dataHandler);
+		    	    chainedFormatter.setNextFormatter(nextFormatter);
+		    	    chainedFormatter = nextFormatter;
+		    }
+		    
+		    return formatter;
 	}
 
 }

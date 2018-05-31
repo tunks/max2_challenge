@@ -25,41 +25,37 @@ public class FormatPattern {
 	public static String COLOR = "color";
 	public static String ZIP_CODE = "zipcode";
 	public static String PHONE_NUMBER = "phoneNumber";
-	public static List<DataPattern> patterns = new ArrayList();
+	/**
+	 * Data format patterns 
+	 **/
+	public static List<DataPattern> DATA_PATTERNS = new ArrayList<DataPattern>(); 
+	static {
+		// (firstname, lastname, number, color, zipcode)
+		DATA_PATTERNS.add(new DataPattern(new String[] { WORDS_REGEX, WORDS_REGEX, PHONE_NUMBER_REGEX, WORDS_REGEX, ZIPCODE_REGEX },
+					                      new String[] { FIRST_NAME, LAST_NAME, PHONE_NUMBER, COLOR, ZIP_CODE }));
+		
+		// (firstname lastname, color, zipcode, phone number)
+		DATA_PATTERNS.add( new DataPattern(new String[] { WORDS_REGEX, WORDS_REGEX, ZIPCODE_REGEX, PHONE_NUMBER_REGEX },
+					                       new String[] { FULL_NAME, COLOR, ZIP_CODE, PHONE_NUMBER }));
+		
+		// (firstname, lastname, zipcode, phone number, color)
+		DATA_PATTERNS.add(new DataPattern( new String[] { WORDS_REGEX, WORDS_REGEX, ZIPCODE_REGEX, PHONE_NUMBER_REGEX, WORDS_REGEX },
+					                       new String[] { FIRST_NAME, LAST_NAME, ZIP_CODE, PHONE_NUMBER, COLOR }));
+		// (firstname lastname, address, zipcode, phone number, color)
+		DATA_PATTERNS.add(new DataPattern(new String[] { WORDS_REGEX, ADDRESS_REGEX, ZIPCODE_REGEX, PHONE_NUMBER_REGEX, WORDS_REGEX },
+										  new String[] { FULL_NAME, ADDRESS, ZIP_CODE, PHONE_NUMBER, COLOR }));
+	}
 	
 
 	/**
 	 * Get format pattern and return list
 	 * 
-	 * @param format  option
+	 * @param formatOptions (1--DATA_PATTERNS.size() ) , {1--4}
 	 * 
 	 * @return array of format patterns in order
 	 **/
 	public static DataPattern getFormatPattern(int formatOption) {
-		//refactoring here
-		switch (formatOption) {
-		case 1:
-			// (firstname, lastname, number, color, zipcode)
-			return new DataPattern(new String[] { WORDS_REGEX, WORDS_REGEX, PHONE_NUMBER_REGEX, WORDS_REGEX, ZIPCODE_REGEX },
-					               new String[] { FIRST_NAME, LAST_NAME, PHONE_NUMBER, COLOR, ZIP_CODE });
-		case 2:
-			// (firstname lastname, color, zipcode, phone number)
-			return new DataPattern(new String[] { WORDS_REGEX, WORDS_REGEX, ZIPCODE_REGEX, PHONE_NUMBER_REGEX },
-					               new String[] { FULL_NAME, COLOR, ZIP_CODE, PHONE_NUMBER });
-		case 3:
-			// (firstname, lastname, zipcode, phone number, color)
-			return new DataPattern(
-					new String[] { WORDS_REGEX, WORDS_REGEX, ZIPCODE_REGEX, PHONE_NUMBER_REGEX, WORDS_REGEX },
-					new String[] { FIRST_NAME, LAST_NAME, ZIP_CODE, PHONE_NUMBER, COLOR });
-		case 4:
-			// (firstname lastname, address, zipcode, phone number, color)
-			// data.add("Donald Duck, 1 Disneyland, 99999, 876-543-2104, Golden");
-
-			return new DataPattern(
-					new String[] { WORDS_REGEX, ADDRESS_REGEX, ZIPCODE_REGEX, PHONE_NUMBER_REGEX, WORDS_REGEX },
-					new String[] { FULL_NAME, ADDRESS, ZIP_CODE, PHONE_NUMBER, COLOR });
-		}
-		return null;
+		return (formatOption>0 && formatOption<=DATA_PATTERNS.size())? DATA_PATTERNS.get(formatOption-1): null;
 	}
 	
 	/***
