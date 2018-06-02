@@ -5,9 +5,15 @@ package com.max2.parser.formatter;
  *  
  *  @author ebrimatunkara
  * **/
-public abstract class AbstractFormatter<T,V> implements BaseFormatter<T,V>{
+public abstract class AbstractFormatter<T,V> implements Formatter<T,V>{
     private AbstractFormatter<T,V> nextFormatter;
 
+    /***
+     * Format input data to object type
+     * 
+     * @param data
+     * @return object type
+     */
 	@Override
 	public T format(V data) {
         	 T object = process(data);
@@ -21,13 +27,21 @@ public abstract class AbstractFormatter<T,V> implements BaseFormatter<T,V>{
         return null;
 	}
 	
-	
+	/**
+	 * Get next formatter
+	 * 
+	 * @param AbstractFormatter 
+	 */
 	public AbstractFormatter<T,V> getNextFormatter() {
 		return nextFormatter;
 	}
 
-
-	public void setNextFormatter(AbstractFormatter nextFormatter) {
+   /**
+    * Set next formatter in the linked formatter chain
+    * 
+    * @param nextFormatter
+    **/
+	public void setNextFormatter(AbstractFormatter<T,V> nextFormatter) {
 		this.nextFormatter = nextFormatter;
 	}
 

@@ -3,50 +3,74 @@ package com.max2.parser.formatter;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.max2.model.Person;
+import com.max2.model.PersonColor;
+import com.max2.parser.DefaultDataHandler;
 import com.max2.parser.MockData;
-import com.max2.parser.handle.DefaultDataHandle;
-import com.max2.web.support.DataPattern;
-import com.max2.web.support.FormatPattern;
+import com.max2.parser.ParserFactoryImpl;
 
-public class CSVFomatter1Test {
-    private CSVFomatter1<Person> formatter;
-    /**
-     * 1. Duck, Donald, (703)-742-0996, Golden, 99999
-(firstname, lastname, number, color, zipcode)
-2. Donald Duck, Golden, 99999-1234, 703 955 0373
-(firstname lastname, color, zipcode, phone number)
-3. Donald, Duck, 99999, 646 111 0101, Golden
-(firstname, lastname, zipcode, phone number, color)
-4. Donald Duck, 1 Disneyland, 99999, 876-543-2104, Golden
-(firstname lastname, address, zipcode, phone number, color)
-     * */
+public class CSVFomatterTest {
+	private Formatter<PersonColor, String> formatter;
+
 	@Before
 	public void setUp() throws Exception {
-		//rn(new String[] { WORDS_REGEX, WORDS_REGEX, PHONE_NUMBER_REGEX, WORDS_REGEX, ZIPCODE_REGEX },
-        //new String[] { FIRST_NAME, LAST_NAME, PHONE_NUMBER, COLOR, ZIP_CODE });
-       formatter = new CSVFomatter1(FormatPattern.getFormatPattern(1), new DefaultDataHandle<Person>(Person.class));
- 
+		formatter = new ParserFactoryImpl(new DefaultDataHandler(PersonColor.class)).getFormatterInstance();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+
 	}
 
+	/**
+	 * Test invalid data
+	 * 
+	 */
 	@Test
-	public void testFormat() {
-	   for(String d: MockData.data) {
-		formatter.format(d);
-	   }
+	public void testFormatInValidData() {
+		PersonColor object;
+		for (String data : MockData.INVALID_DATA) {
+			object = formatter.format(data);
+			Assert.assertNull("Invalid data, object should be null " + data, object);
+		}
+	}
+
+	/**
+	 * Test valid data
+	 * 
+	 */
+	@Test
+	public void testFormatValidData() {
+		PersonColor object;
+		for (String data : MockData.VALID_DATA) {
+			object = formatter.format(data);
+			Assert.assertNotNull("Valid data, object should be not null " + data, object);
+		}
+	}
+
+	/**
+	 * Test combine valid and invalid data
+	 * 
+	 */
+	@Test
+	public void testFormatCombineInvalidAndValidData() {
+		PersonColor object;
+		List<String> combineData = new ArrayList(MockData.INVALID_DATA);
+		combineData.addAll(MockData.VALID_DATA);
+		List<PersonColor> objects = new ArrayList();
+		for (String data : combineData) {
+			object = formatter.format(data);
+			if (object != null) {
+				objects.add(object);
+			}
+		}
+
+		Assert.assertTrue(objects.size() == MockData.VALID_DATA.size());
 	}
 }

@@ -1,4 +1,4 @@
-package com.max2.web.support;
+package com.max2.support;
 
 import org.springframework.util.Assert;
 
@@ -10,7 +10,6 @@ public class DataPattern {
         private String[] patternsMapper={};
 		
         public DataPattern(String[] patterns, String[] patternsMapper) {
-			super();
 			this.patterns = patterns;
 			this.patternsMapper = patternsMapper;
 			Assert.isTrue(patterns.length == patternsMapper.length, "Patterns and mappers should be equal length");

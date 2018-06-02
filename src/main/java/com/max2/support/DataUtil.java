@@ -1,4 +1,4 @@
-package com.max2.web.support;
+package com.max2.support;
 
 import java.io.IOException;
 import java.util.Map;

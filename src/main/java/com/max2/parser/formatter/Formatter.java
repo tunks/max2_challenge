@@ -5,7 +5,7 @@ package com.max2.parser.formatter;
  * 
  *  @author ebrimatunkara
  ***/
-public interface BaseFormatter<T,V> {
+public interface Formatter<T,V> {
 	/**
 	 *  @param data
 	 *  @return  

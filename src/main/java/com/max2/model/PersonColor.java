@@ -9,13 +9,13 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
- * Person entity model class
+ * PersonColor entity model class
  *  containing Address, Contact and Color 
  * 
  * @author ebrimatunkara
  **/
 @Entity
-public class Person implements Serializable {
+public class PersonColor implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id

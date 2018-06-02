@@ -1,18 +1,18 @@
-package com.max2.parser.handle;
+package com.max2.parser;
 
 import java.io.IOException;
 import java.util.Map;
 
-import com.max2.web.support.DataUtil;
+import com.max2.support.DataUtil;
 /**
  * Data Handler implementation transform map values into POJO objects
  * 
  *  @author ebrimatunkara
  **/
-public class DefaultDataHandle<T> implements DataHandler<T, Map<String,String>> {
+public class DefaultDataHandler<T> implements DataHandler<T, Map<String,String>> {
     private Class<T> classType;
    
-	public DefaultDataHandle(Class<T> classType) {
+	public DefaultDataHandler(Class<T> classType) {
 		super();
 		this.classType = classType;
 	}
@@ -21,7 +21,7 @@ public class DefaultDataHandle<T> implements DataHandler<T, Map<String,String>> 
 	 *  Mapped data handling into POJO
 	 *  
 	 *  @param data: Map
-	 *  @return T 
+	 *  @return T , returns object type T when data is valid else returns null 
 	 ***/
 	@Override
 	public T handle(Map<String, String> data) {

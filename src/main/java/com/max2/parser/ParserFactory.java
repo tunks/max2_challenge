@@ -1,25 +1,32 @@
 package com.max2.parser;
 
-import com.max2.parser.formatter.BaseFormatter;
+import com.max2.parser.formatter.Formatter;
+import com.max2.parser.reader.DataReader;
 
 /**
  * Base formatter factory
  * @author ebrimatunkara 
  **/
-public interface BaseParserFactory {
+public interface ParserFactory {
 	  /**
 	   * Get and return new or existing formatter instance(singleton)
 	   * 
 	   * @return BaseFormatter
 	   **/
-       public BaseFormatter getFormatterInstance();
+       public Formatter getFormatterInstance();
        
+       /**
+ 	   * Get and return new or existing formatter instance(singleton)
+ 	   * 
+ 	   * @return BaseFormatter
+ 	   **/
+        public DataReader newDataReaderInstance(EventHandler eventHandle);
 	  /**
 	   * Get and return new formatter instance
 	   * 
 	   * @return BaseFormatter
 	   **/
-       public BaseFormatter newFormatter();
+       public Formatter newFormatter();
      
        /**
  	   * Get and return formatter instance
@@ -27,7 +34,7 @@ public interface BaseParserFactory {
  	   * @param formatter type
  	   * @return BaseFormatter
  	   **/
-       public BaseFormatter newFormatter( FormatterType type);
+       public Formatter newFormatter( FormatterType type);
 
        /***
         * Formatter types

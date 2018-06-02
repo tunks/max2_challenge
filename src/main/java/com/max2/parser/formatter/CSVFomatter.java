@@ -2,29 +2,30 @@ package com.max2.parser.formatter;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.max2.parser.handle.DataHandler;
-import com.max2.web.support.DataPattern;
-import com.max2.web.support.FormatPattern;
+
+import com.max2.parser.DataHandler;
+import com.max2.support.DataPattern;
+import com.max2.support.FormatPattern;
 
 /**
  * CSV Formatter implementation
  * 
  *  @author ebrimatunkara
  ***/
-public class CSVFomatter1<T> extends AbstractFormatter<T,String>{  
+public class CSVFomatter<T> extends AbstractFormatter<T,String>{  
 	/**
 	 * Handle transforms the formatted data to runtime POJO
 	 **/
 	private DataPattern dataPattern;
 	private DataHandler<T,Map<String,String>> dataHandler;
 	
-	public CSVFomatter1( DataPattern dataPattern , DataHandler handler) {
+	public CSVFomatter( DataPattern dataPattern , DataHandler handler) {
 		this.dataPattern = dataPattern;
 		this.dataHandler = handler;
 	}
 
 	/**
-	 * Process input data String to valid Object 
+	 * Process input data to valid object type
 	 * 
 	 * @param data
 	 ***/
