@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.max2.support.APIQueryOperation;
+import com.max2.support.ApiQueryOperation;
 import com.max2.support.QueryProjection.VenueResults;
 
 /**
@@ -22,7 +22,7 @@ import com.max2.support.QueryProjection.VenueResults;
 public class VenueController {
 	@Autowired
 	@Qualifier("venueQueryService")
-	private APIQueryOperation<Map,VenueResults> apiQueryOperation;
+	private ApiQueryOperation<Map,VenueResults> apiQueryOperation;
 	
 	/**
 	 *  Search venue names and default location given as NY

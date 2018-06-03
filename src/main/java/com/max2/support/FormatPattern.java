@@ -34,7 +34,6 @@ public class FormatPattern {
 		// (firstname, lastname, number, color, zipcode)
 		DATA_PATTERNS.add(new DataPattern(new String[] { WORDS_REGEX, WORDS_REGEX, PHONE_NUMBER_REGEX, WORDS_REGEX, ZIPCODE_REGEX },
 					                      new String[] { FIRST_NAME, LAST_NAME, PHONE_NUMBER, COLOR, ZIP_CODE }));
-		
 		// (firstname lastname, color, zipcode, phone number)
 		DATA_PATTERNS.add( new DataPattern(new String[] { WORDS_REGEX, WORDS_REGEX, ZIPCODE_REGEX, PHONE_NUMBER_REGEX },
 					                       new String[] { FULL_NAME, COLOR, ZIP_CODE, PHONE_NUMBER }));
@@ -44,6 +43,8 @@ public class FormatPattern {
 		// (firstname lastname, address, zipcode, phone number, color)
 		DATA_PATTERNS.add(new DataPattern(new String[] { WORDS_REGEX, ADDRESS_REGEX, ZIPCODE_REGEX, PHONE_NUMBER_REGEX, WORDS_REGEX },
 										  new String[] { FULL_NAME, ADDRESS, ZIP_CODE, PHONE_NUMBER, COLOR }));
+		
+		//more formatter patterns can be added and will dynamically be loaded into the formatter chain
 	}
 	
 

@@ -2,10 +2,10 @@ package com.max2.parser.reader;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import org.apache.commons.io.FileUtils;
 import com.max2.parser.EventHandler;
 import com.max2.parser.formatter.Formatter;
 
@@ -48,7 +48,7 @@ public class DefaultDataReaderImpl implements DataReader {
 	@Override
 	public void read(File file) throws DataReaderException {
 		try {
-			InputStream inputStream = FileUtils.openInputStream(file);
+			InputStream inputStream = new FileInputStream(file);
 			read(inputStream);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

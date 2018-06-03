@@ -24,12 +24,12 @@ public class ParserResponseImpl implements ParserResponse{
 	}
 
 	@Override
-	public Long getNumberOfErrors() {
+	public long getNumberOfErrors() {
 		return errors().get();
 	}
 
 	@Override
-	public Long getNumberOfSucccess() {
+	public long getNumberOfSucccess() {
 		return  success().get();
 	}
 

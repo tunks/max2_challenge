@@ -16,9 +16,10 @@ public interface ParserFactory {
        public Formatter getFormatterInstance();
        
        /**
- 	   * Get and return new or existing formatter instance(singleton)
+ 	   * Get new DataReader instance
  	   * 
- 	   * @return BaseFormatter
+ 	   * @param eventHandler
+ 	   * @return DataReader
  	   **/
         public DataReader newDataReaderInstance(EventHandler eventHandle);
 	  /**

@@ -3,10 +3,17 @@ package com.max2.support;
 import org.springframework.util.Assert;
 
 /**
- * Data patterns helper model to store patterns and corresponding mapping name 
+ * Data patterns utility model to store and map field names and value regex patterns
+ * @author ebrimatunkara
  **/
 public class DataPattern {
+	    /**
+	     * Field value regex experessions 
+	     **/
         private String[] patterns;
+        /**
+         * Corresponding field names  with same array index as the field value regex
+         */
         private String[] patternsMapper={};
 		
         public DataPattern(String[] patterns, String[] patternsMapper) {

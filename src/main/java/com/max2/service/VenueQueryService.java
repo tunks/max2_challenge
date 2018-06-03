@@ -9,7 +9,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import com.max2.support.APIQueryOperation;
+import com.max2.support.ApiQueryOperation;
 import com.max2.support.QueryProjection.VenueResults;
 import fi.foyt.foursquare.api.FoursquareApi;
 import fi.foyt.foursquare.api.FoursquareApiException;
@@ -18,12 +18,12 @@ import fi.foyt.foursquare.api.entities.CompactVenue;
 import fi.foyt.foursquare.api.entities.VenuesSearchResult;
 
 /**
- * Venue query service -- peform external api query using FoursquareApi
+ * Venue query service -- peform external api query on Foursquare API
  * 
  * @author ebrimatunkara
  **/
 @Service("venueQueryService")
-public class VenueQueryService implements APIQueryOperation<Map, VenueResults>, InitializingBean {
+public class VenueQueryService implements ApiQueryOperation<Map, VenueResults>, InitializingBean {
 	private static final Logger logger = LoggerFactory.getLogger(VenueQueryService.class);
 
 	@Value("${external.api.endpoint}")

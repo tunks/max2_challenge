@@ -17,9 +17,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
-import com.max2.web.Max2Application;
 
-@ActiveProfiles("dev")
+import com.max2.parser.MockData;
+import com.max2.starter.Max2Application;
+
+@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Max2Application.class)
 @WebAppConfiguration
@@ -27,8 +29,7 @@ public class VenueControllerTest {
 	@Autowired
 	private WebApplicationContext context;
 	private MockMvc mockMvc;
-
-	private String url = "/max2/api/v1/venues";
+	private String url = MockData.VENUE_ENDPOINT_URL;
 
 	@Before
 	public void setUp() throws Exception {

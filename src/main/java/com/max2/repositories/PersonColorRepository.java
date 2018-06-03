@@ -1,12 +1,9 @@
 package com.max2.repositories;
 
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
 import com.max2.model.PersonColor;
-import com.max2.support.ColorQueryOperation;
 import com.max2.support.QueryProjection.*;
 
 /**
@@ -29,15 +26,9 @@ public interface PersonColorRepository extends JpaRepository<PersonColor, Long> 
 	 * 
 	 * @return List of ColorCountAndPerson
 	 **/
-//	@Query(value = "SELECT color, COUNT(color) as colorCount," + 
-//			" CONCAT(GROUP_CONCAT(CONCAT('\"',first_name,' ',last_name,'\"') SEPARATOR ',') ) names " + 
-//			"FROM person GROUP BY color ORDER BY colorCount DESC", nativeQuery = true)
 	@Query(value = "SELECT color, COUNT(color) as count," + 
 			" CONCAT(GROUP_CONCAT(CONCAT(first_name,' ',last_name) SEPARATOR ',') ) names " + 
 			"FROM person_color GROUP BY color ORDER BY count DESC", nativeQuery = true)
-//	@Query(value = "SELECT color, COUNT(color) as count, " + 
-//	" JSON_ARRAYAGG( CONCAT(first_name,' ',last_name) )  names "+ 
-//	"FROM person_color GROUP BY color ORDER BY count DESC", nativeQuery = true)
 	List<ColorCountAndPersonList> getColorCountAndPersonsList();
 
 }

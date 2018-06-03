@@ -10,12 +10,12 @@ public interface ParserResponse {
 	 *  
 	 * @return Long
 	 */
-    public Long getNumberOfErrors();
+    public long getNumberOfErrors();
 	
     /**
 	 *  Get number of parser success valid lines on input data 
 	 *  
 	 * @return Long
 	 */
-    public Long getNumberOfSucccess();
+    public long getNumberOfSucccess();
 }

@@ -29,14 +29,24 @@ public class ParseEventHandler extends Observable implements EventHandler<String
               Object object = formatter.format(data);		
               updateObservers(ParserEvent.build(object, data));
 	}
-
+    
+	/**
+	 * Update registered observers
+	 * 
+	 * @param object
+	 */
     private void updateObservers(Object object) {
     	   if(this.countObservers() > 0 ) {
              setChanged();
              notifyObservers(object);
        	 }
     }
-    
+    /**
+     *  Parser Event model  
+     *  --- object contains the parser status, object and original data of each data input data that is processed by the formatter
+     *  --- the event model is send to observers that register to the event handler (updates the observers)
+     * 
+     */
     public static class ParserEvent{
     	      private ParserEventStatus status;
     	      private Object object;

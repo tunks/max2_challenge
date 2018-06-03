@@ -3,7 +3,8 @@ package com.max2.parser.formatter;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.max2.parser.DataHandler;
+import org.springframework.core.convert.converter.Converter;
+
 import com.max2.support.DataPattern;
 import com.max2.support.FormatPattern;
 
@@ -17,11 +18,11 @@ public class CSVFomatter<T> extends AbstractFormatter<T,String>{
 	 * Handle transforms the formatted data to runtime POJO
 	 **/
 	private DataPattern dataPattern;
-	private DataHandler<T,Map<String,String>> dataHandler;
+	private Converter<Map<String,String>,T> converter;
 	
-	public CSVFomatter( DataPattern dataPattern , DataHandler handler) {
+	public CSVFomatter( DataPattern dataPattern , Converter converter) {
 		this.dataPattern = dataPattern;
-		this.dataHandler = handler;
+		this.converter = converter;
 	}
 
 	/**
@@ -59,6 +60,6 @@ public class CSVFomatter<T> extends AbstractFormatter<T,String>{
 			    valueMap.put(field, value);
 			}
 		}
-		return dataHandler.handle(valueMap);
+		return converter.convert(valueMap);
 	}
 }

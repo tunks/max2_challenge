@@ -3,17 +3,18 @@ package com.max2.parser;
 import java.io.IOException;
 import java.util.Map;
 
+import org.springframework.core.convert.converter.Converter;
+
 import com.max2.support.DataUtil;
 /**
- * Data Handler implementation transform map values into POJO objects
+ * Data converter implementation transform map values into POJO objects
  * 
  *  @author ebrimatunkara
  **/
-public class DefaultDataHandler<T> implements DataHandler<T, Map<String,String>> {
+public class DefaultDataConverter<T> implements Converter<Map<String,String>, T> {
     private Class<T> classType;
    
-	public DefaultDataHandler(Class<T> classType) {
-		super();
+	public DefaultDataConverter(Class<T> classType) {
 		this.classType = classType;
 	}
 
@@ -24,10 +25,9 @@ public class DefaultDataHandler<T> implements DataHandler<T, Map<String,String>>
 	 *  @return T , returns object type T when data is valid else returns null 
 	 ***/
 	@Override
-	public T handle(Map<String, String> data) {
+	public T convert(Map<String, String> data) {
 		try {
 			T obj = DataUtil.mapToObject(data, classType);
-			System.out.println(" obj :"+obj);
 			return obj;
 		} catch (IOException e) {
 			e.printStackTrace();

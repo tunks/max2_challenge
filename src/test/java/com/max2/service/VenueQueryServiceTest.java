@@ -12,17 +12,19 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.max2.support.APIQueryOperation;
-import com.max2.web.Max2Application;
+import com.max2.starter.Max2Application;
+import com.max2.support.ApiQueryOperation;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=Max2Application.class)
+@ActiveProfiles("test")
 public class VenueQueryServiceTest {
 	@Autowired
 	@Qualifier("venueQueryService")
-	private APIQueryOperation apiQueryOperation;
+	private ApiQueryOperation apiQueryOperation;
 	
 	@Before
 	public void setUp() throws Exception {

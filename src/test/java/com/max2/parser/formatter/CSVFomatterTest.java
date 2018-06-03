@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.max2.model.PersonColor;
-import com.max2.parser.DefaultDataHandler;
+import com.max2.parser.DefaultDataConverter;
 import com.max2.parser.MockData;
 import com.max2.parser.ParserFactoryImpl;
 
@@ -20,7 +20,7 @@ public class CSVFomatterTest {
 
 	@Before
 	public void setUp() throws Exception {
-		formatter = new ParserFactoryImpl(new DefaultDataHandler(PersonColor.class)).getFormatterInstance();
+		formatter = new ParserFactoryImpl(new DefaultDataConverter(PersonColor.class)).getFormatterInstance();
 	}
 
 	@After

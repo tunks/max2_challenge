@@ -1,4 +1,4 @@
-package com.max2.web;
+package com.max2.starter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

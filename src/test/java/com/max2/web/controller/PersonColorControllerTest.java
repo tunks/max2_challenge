@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
@@ -13,26 +14,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
+
+import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-
 import com.max2.parser.MockData;
-import com.max2.web.Max2Application;
+import com.max2.starter.Max2Application;
 
-@ActiveProfiles("dev")
+@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Max2Application.class)
+@SpringBootTest(properties= {"spring.jpa.hibernate.ddl-auto=create-drop"}, classes = Max2Application.class)
 @WebAppConfiguration
 public class PersonColorControllerTest {
 	@Autowired
 	private WebApplicationContext context;
 	private MockMvc mockMvc;
+	private String url = MockData.PERSON_COLOR_ENDPOINT_URL;
 
-	private String url = "/max2/api/v1/persons/colors";
-
+	
 	@Before
 	public void setUp() throws Exception {
 		mockMvc = webAppContextSetup(context).build();
@@ -48,9 +51,7 @@ public class PersonColorControllerTest {
 			   .contentType(MediaType.TEXT_PLAIN_VALUE)
 			   .content(String.join(System.lineSeparator(),MockData.INVALID_DATA)))
 		       .andExpect(status().is2xxSuccessful())
-		       .andExpect(x->{
-	    	         System.out.println("Parser response: "+ x.getResponse().getContentAsString());
-		       });
+		       .andExpect(jsonPath("$.numberOfErrors", is(MockData.INVALID_DATA.size())));
 	}
 	
 	@Test
@@ -63,7 +64,7 @@ public class PersonColorControllerTest {
 	@Test
 	public void testGetAllPersonColorCountWithNamesIncluded() throws Exception {
 		mockMvc.perform(get(url)
-				.param("names", "true")
+			   .param("names", "true")
 			   .contentType(MediaType.APPLICATION_JSON))
 		       .andExpect(status().is2xxSuccessful())
 		       .andExpect(x->{
@@ -73,10 +74,13 @@ public class PersonColorControllerTest {
 
 	@Test
 	public void testUpload() throws Exception {
-        MockMultipartFile file = new MockMultipartFile("file", "filename.txt", "text/plain", MockData.VALID_DATA.get(0).getBytes());
+		String data =  String.join(System.lineSeparator(),MockData.VALID_DATA);
+        MockMultipartFile file = new MockMultipartFile("file", "filename.txt", "text/plain", data.getBytes());
         String uploadUrl =  url.concat("/upload");
         mockMvc.perform(multipart(uploadUrl)
                .file(file))
-               .andExpect(status().is2xxSuccessful());
+               .andExpect(status().is2xxSuccessful())
+		       .andExpect(jsonPath("$.numberOfSucccess", is(MockData.VALID_DATA.size())));
+
 	}
 }

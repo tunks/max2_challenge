@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.max2.parser.ParserResponse;
 import com.max2.parser.reader.DataReaderException;
 import com.max2.support.ColorQueryOperation;
@@ -73,7 +74,7 @@ public class PersonColorController {
 	 *  @param file
 	 *  @return RespondeEntity
 	 **/
-	@RequestMapping(value="/upload", method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+	@RequestMapping(value="/upload", method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
 		   try {
 			    ParserResponse response = dataReaderOperation.readAsInputStream(file.getInputStream());

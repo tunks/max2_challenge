@@ -11,34 +11,38 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.max2.model.PersonColor;
+import com.max2.starter.Max2Application;
 import com.max2.support.QueryProjection.ColorCount;
 import com.max2.support.QueryProjection.ColorCountAndPersonList;
-import com.max2.web.Max2Application;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=Max2Application.class)
-@ActiveProfiles("dev")
+@ActiveProfiles("test")
 public class PersonColorRepositoryTest {
 	@Resource
     private PersonColorRepository personColorRepository;
-	private PersonColor person;
+	private PersonColor personColor;
 	
 	@Before
 	public void setUp() throws Exception {
-	   person = new PersonColor();
+		personColor = new PersonColor();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		if(personColor.getId() !=null) {
+		   personColorRepository.deleteById(personColor.getId());
+		}
 	}
 
 	@Test
-	public void testSave() {
-		person.setFirstName("Dan");
-		person.setLastName("Kerry");
-		person.setColor("Yello");
-		PersonColor result = personColorRepository.save(person);
+	public void testSave()  {
+		personColor.setFirstName("Dan");
+		personColor.setLastName("Kerry");
+		personColor.setColor("Yello");
+		PersonColor result = personColorRepository.save(personColor);
 		Assert.assertNotNull(result);
+		Assert.assertEquals(personColor.getColor(), result.getColor());
 	}
 	
 	@Test

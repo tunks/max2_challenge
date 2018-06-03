@@ -15,7 +15,7 @@ public class ParserFactoryImplTest {
 	private ParserFactory  parserFactory;
 	@Before
 	public void setUp() throws Exception {
-		parserFactory = new ParserFactoryImpl(new DefaultDataHandler(PersonColor.class));
+		parserFactory = new ParserFactoryImpl(new DefaultDataConverter(PersonColor.class));
 	}
 
 	@After

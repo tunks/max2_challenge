@@ -23,7 +23,7 @@ import com.max2.support.DataReaderOperation;
 import com.max2.support.WriteOperation;
 
 /**
- * Dynamic data reader service
+ * Dynamic data reader service -- reads and processes the data inputs 
  * 
  * @author ebrimatunkara
  * 
@@ -63,9 +63,9 @@ public class DataReaderService implements DataReaderOperation<ParserResponse> {
 		});
 		return parserFactory.newDataReaderInstance(eventHandle);
 	}
-
+	
 	/**
-	 * Write Operation observer -- gets notification after data format and save object to database
+	 * Write Operation observer -- gets notification from the parser event handler delegated by the formatter and saves object to database
 	 * 
 	 **/
 	private class WriteOperationObserver implements Observer {

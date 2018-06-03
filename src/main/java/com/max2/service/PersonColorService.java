@@ -23,6 +23,9 @@ public class PersonColorService implements ColorQueryOperation, WriteOperation<P
 	 @Resource
      private PersonColorRepository personRepository;
 	 
+	 /**
+	  * 
+	  */
 	 public List<ColorCount> getAllColorCount() {
 		 return personRepository.getColorCount();
 	 }
