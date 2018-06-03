@@ -56,8 +56,6 @@ public class VenueQueryService implements ApiQueryOperation<Map, VenueResults>, 
 				for (CompactVenue venue : searchResults.getResult().getVenues()) {
 					places.add(venue.getName());
 				}
-				logger.info("searchResults: " + searchResults);
-				logger.info("venus: " + result.toString());
 				return result;	
 			} 
 

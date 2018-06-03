@@ -36,6 +36,7 @@ public class VenueQueryServiceTest {
 
 	@Test
 	public void testQuery() {
+		//TODO
 		Map<String,String> queryParams = new HashMap();
 		queryParams.put("near","New York,NY");
 		apiQueryOperation.query(queryParams);
