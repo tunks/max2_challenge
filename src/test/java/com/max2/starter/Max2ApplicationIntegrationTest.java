@@ -60,14 +60,16 @@ public class Max2ApplicationIntegrationTest extends MockAbstractDataReader {
 	@Before
 	public void setUp() throws Exception {
 		super.setUp();
+		cleanupPersonColorRecordsInTestDB();
 		readFromFile();
 		mapPersonColorResults();
+		
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		personColorRepository.deleteAll();
-	}
+		cleanupPersonColorRecordsInTestDB();
+     }
 
 	/**
 	 * 
@@ -93,7 +95,7 @@ public class Max2ApplicationIntegrationTest extends MockAbstractDataReader {
 		 * Assert response entity 
 		 */
 		for(PersonColorCountEntity entity: responseEntity.getBody()) {
-	     	Assert.assertEquals(entity.getCount(),colorCountMap.get(entity.getColor()).intValue());
+	     	Assert.assertEquals(colorCountMap.get(entity.getColor()).intValue(),entity.getCount());
 	     	Assert.assertTrue(entity.getNames().containsAll(personColorCountMap.get(entity.getColor())));
 	     	Assert.assertTrue(personColorCountMap.get(entity.getColor()).containsAll(entity.getNames()));
 		}		
@@ -109,6 +111,10 @@ public class Max2ApplicationIntegrationTest extends MockAbstractDataReader {
 			  names.add(String.join(" ", personColor.getFirstName(),personColor.getLastName()));
 			  personColorCountMap.put(color,names);
 		  }
+	}
+	
+	private void cleanupPersonColorRecordsInTestDB() {
+		personColorRepository.deleteAll();
 	}
 	
 	public static class PersonColorCountEntity{
