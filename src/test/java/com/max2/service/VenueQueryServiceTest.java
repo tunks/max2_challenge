@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.max2.starter.Max2Application;
 import com.max2.support.ApiQueryOperation;
+import com.max2.support.QueryProjection.VenueResults;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=Max2Application.class)
@@ -24,7 +26,7 @@ import com.max2.support.ApiQueryOperation;
 public class VenueQueryServiceTest {
 	@Autowired
 	@Qualifier("venueQueryService")
-	private ApiQueryOperation apiQueryOperation;
+	private ApiQueryOperation<Map,VenueResults> apiQueryOperation;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -34,12 +36,15 @@ public class VenueQueryServiceTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Test API query
+	 */
 	@Test
 	public void testQuery() {
-		//TODO
 		Map<String,String> queryParams = new HashMap();
 		queryParams.put("near","New York,NY");
-		apiQueryOperation.query(queryParams);
+		VenueResults results = apiQueryOperation.query(queryParams);
+		Assert.assertNotNull(results);
 	}
 
 }
