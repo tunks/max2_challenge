@@ -67,27 +67,32 @@ I. core structure
    3. Map the raw structure {firstname lastname, address, zipcode, phone number, color} into  PersonColor POJO class 
 
 II. Data parsing and formatting  operation    
-   4. Dynamic parser formatters to linked in  a chain (Chain of Responsibility - design pattern).
+   1. Dynamic parser formatters to linked in  a chain (Chain of Responsibility - design pattern)
        a. For now the dynamic format patterns are hard-coded and mapped in the "com.max2.support.FormatPattern" class in an array list 
        b. The field format uses regular expressions for the raw structures  and are defined as DataPattern which contains the field names 
           and corresponding regular expression. It should be possible to store the DataPattern in the database for users to dynamically add or 
-          remove regex and field structures- that is beyond the current score of the max2 challenge.
-   5. The parser formatters  do not write directly to the database -- separation of concern.The formatters parse the valid line into Map(key-pair values) 
-      and  delegate it to the Converter component that transforms the map into POJO object.
-   6. The ParserEventHandler extends the Java observable( observer design pattern) to propagate a ParserEvent object of both valid or invalid lines 
-      with status code, original line, and POJO object(invalid line will be null) to the observers that have registered for notification.
-   7. Write operation observer registers to the ParserEventHandler  and gets ParserEvent updates whenever a line from the input data is parsed.
-      Valid ParserEvent object(not null) are delegated to the PersonColorService(WriteOperation interface) to persist the data.
+          remove regex and field structures- that is beyond the current score of the max2 challenge
+          
+   2. The parser formatters  do not write directly to the database -- separation of concern.The formatters parse the valid line into Map
+      and  delegate it to the Converter component that transforms the map into POJO object
+   
+   3. The ParserEventHandler extends the Java observable( observer design pattern) to propagate a ParserEvent object of both valid or invalid lines 
+      with status code, original line, and POJO object(invalid line will be null) to the observers that have registered for notification
+      
+   4. Write operation observer registers to the ParserEventHandler  and gets ParserEvent updates whenever a line from the input data is parsed.
+      Valid ParserEvent object(not null) are delegated to the PersonColorService(WriteOperation interface) to persist the data
       Invalid data is logged with a warning.
  
  III. Person color count query operation
-  8.  Aggregate count queries are performed on the SQL database to better performance and flexibility.
-  9.  Aggregate results are projected into interface class objects defined "com.max2.support.QueryProjection" class
+   1.  Aggregate count queries are performed on the SQL database to better performance and flexibility.
+  
+   2.  Aggregate results are projected into interface class objects defined "com.max2.support.QueryProjection" class
  
  
  IV. Data I/O
-   10. Data input can be given a raw text file separated by lines or uploaded  as file
-   11. Restful API using the controllers provided HTTP endpoints to perform POST and GET requests
+   1. Data input can be given a raw text file separated by lines or uploaded  as file
+   
+   2. Restful API using the controllers provided HTTP endpoints to perform POST and GET requests
    
 
 
