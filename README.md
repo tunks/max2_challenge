@@ -107,7 +107,31 @@ Decision Part 2
      
   II. VenueController provides the HTTP end points to search for venues
 
- ---------------------
+ ---------------------------------------
 
-# Build and deployment   
+
+# Setup, build and deployment  
+  1. Framework used: Java Spring Framework (spring-boot)
+  
+     The following are required dependencies and must be installed on your computer before starting the build process
+       1. Database: MySQL
+       2. Apache Maven 3 
+    
+  2. Create a two databases and user account of your choice
+           
+        (Default) Quick setup on the database use the following MySQL commands to create default user "max2" with password "max2123" for two databases.
+      
+        CREATE USER 'max2'@'localhost' IDENTIFIED BY 'max2123';    
+		GRANT ALL PRIVILEGES ON max2_db. * TO 'max2'@'localhost';
+		GRANT ALL PRIVILEGES ON max2_db_test. * TO 'max2'@'localhost';
+		FLUSH PRIVILEGES;
+
+   3.  Move directory into the project directory and build the code. Run the following maven commands below:
    
+       /* (option 1)  Run maven build with the default database setup */
+       mvn clean install   
+       
+       /* (option 2) Run maven build with the modified custom database parameters  */
+       mvn clean install -Ddbname="database name" -Ddbuser="database user" -Ddbpassword="database password" -Ddbhost="localhost" -Ddbport="3306"
+        
+  
