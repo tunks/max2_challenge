@@ -149,16 +149,19 @@ Decision Part 2
       
        java -jar target/max2_challenge-0.0.1-SNAPSHOT.jar
        
-    5.  To access the end points
+    5.  To access the end points locally
     
 	    ###### Get color counts
-		http://localhost:18080/max2/api/v1/persons/colors
+		curl -X GET http://localhost:18080/max2/api/v1/persons/colors
 		
 		###### Get color counts and names of persons
-		http://localhost:18080/max2/api/v1/persons/colors?names=true
+		curl -X GET http://localhost:18080/max2/api/v1/persons/colors?names=true
 		
 		##### Post data
 		curl -X POST http://localhost:18080/max2/api/v1/persons/colors  -H 'content-type: text/plain' -d 'Duck, Donald, (703)-742-0996, Blue, 23234'
 		
 		##### Upload file
 		curl -X POST -F file=@sample_csv.txt http://localhost:18080/max2/api/v1/persons/colors/upload 
+		
+		##### Get venues
+		curl -X GET http://dev.etunkara.info:18080/max2/api/v1/venues?near=MN
