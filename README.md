@@ -59,6 +59,9 @@ High Level design
 
 ![Alt text](max2_challenge_HDL.png?raw=true "Max2 Challenge HLD")
 
+See the UML class diagram
+
+-------------------------------------------------
 Decision Part 1
 
 I. core structure
@@ -73,7 +76,7 @@ II. Data parsing and formatting  operation
           and corresponding regular expression. It should be possible to store the DataPattern in the database for users to dynamically add or 
           remove regex and field structures- that is beyond the current score of the max2 challenge
           
-   2. The parser formatters  do not write directly to the database -- separation of concern.The formatters parse the valid line into Map
+   2. The parser formatters do not write directly to the database -- separation of concern.The formatters parse the valid line into Map
       and  delegate it to the Converter component that transforms the map into POJO object
    
    3. The ParserEventHandler extends the Java observable( observer design pattern) to propagate a ParserEvent object of both valid or invalid lines 
@@ -93,7 +96,11 @@ II. Data parsing and formatting  operation
    1. Data input can be given a raw text file separated by lines or uploaded  as file
    
    2. Restful API using the controllers provided HTTP endpoints to perform POST and GET requests
-   
+  
+
+----------------------------------------
+Decision Part 2
+  I. 
 
 
     
