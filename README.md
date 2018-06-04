@@ -1,4 +1,4 @@
-# max2_challenge
+# Max2 challenge
 Max2 Inc code challenge
 
 
@@ -53,7 +53,7 @@ Part 2
 	  }
 	  
 ------------------------------------------
-# Design
+### Design
 
 High Level design
 
@@ -110,7 +110,7 @@ Decision Part 2
  ---------------------------------------
 
 
-# Setup, build and deployment  
+### Setup, build and deployment  
   1. Framework used: Java Spring Framework (spring-boot)
   
      The following are required dependencies and must be installed on your computer before starting the build process
@@ -131,11 +131,11 @@ Decision Part 2
 
    3.  Move directory into the project directory and build the code. Run the following maven commands below:
    
-       /* (option 1)  Run maven build with the default database setup */
+       *(option 1)  Run maven build with the default test database setup to run the test cases*
     
-       mvn clean install   
+       mvn clean install -Ddbname="max2_db_test"
        
-       /* (option 2) Run maven build with the modified custom database parameters  */
+       *(option 2) Run maven build with the modified custom database parameters to run the test cases*
        
        mvn clean install -Ddbname="database name" -Ddbuser="database user" -Ddbpassword="database password" -Ddbhost="localhost" -Ddbport="3306"
         
