@@ -188,4 +188,6 @@ Decision Part 2
 		curl -X GET http://dev.etunkara.info:18080/max2/api/v1/venues?near=MN
 		
 		
+		(Optional) - You can either use Chrome Postman or firefox RestClient add-on plugins to test the endpoints
+		
 		##### Note: the code is deployed to my AWS server using Jenkins(http://dev.etunkara.info:8080) that is hooked to this repository
