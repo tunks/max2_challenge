@@ -52,7 +52,8 @@ Part 2
 				"Chipotle" ]
 	  }
 	  
-#Design
+------------------------------------------
+# Design
 
 High Level design
 
