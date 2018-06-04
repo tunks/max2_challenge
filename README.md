@@ -68,6 +68,8 @@ I. core structure
    1. Decouple and modularize the uses cases into class separate components
    2. The core application is layered into controllers, services, repositories/dao, parsers, and helper/support packages
    3. Map the raw structure {firstname lastname, address, zipcode, phone number, color} into  PersonColor POJO class 
+   4. Data persistent uses JPA hibernate, spring-data-jpa module provides JPARepository abstraction that is easy and flexible to use. 
+      ColorPersonRepository extends JPARepository abstraction provided by Spring
 
 II. Data parsing and formatting  operation    
    1. Dynamic parser formatters to linked in  a chain (Chain of Responsibility - design pattern)
@@ -114,7 +116,7 @@ Decision Part 2
   1. Framework used: Java Spring Framework (spring-boot)
   
      The following are required dependencies and must be installed on your computer before starting the build process
-       1. Database: MySQL
+       1. Database: MySQL version 5.7.22  and above (any recent version that supports GROUP_CONCAT operations)
        2. Apache Maven 3 
     
   2. Create a two databases and user account of your choice
