@@ -164,4 +164,21 @@ Decision Part 2
 		curl -X POST -F file=@sample_csv.txt http://localhost:18080/max2/api/v1/persons/colors/upload 
 		
 		##### Get venues
+		curl -X GET http://localhost:18080/max2/api/v1/venues?near=MN
+	
+	 6.  To access the end points over the cloud deployed in AWS
+    
+	    ###### Get color counts
+		curl -X GET http://dev.etunkara.info:18080/max2/api/v1/persons/colors
+		
+		###### Get color counts and names of persons
+		curl -X GET http://dev.etunkara.info:18080/max2/api/v1/persons/colors?names=true
+		
+		##### Post data
+		curl -X POST http://dev.etunkara.info:18080/max2/api/v1/persons/colors  -H 'content-type: text/plain' -d 'Duck, Donald, (703)-742-0996, Blue, 23234'
+		
+		##### Upload file
+		curl -X POST -F file=@sample_csv.txt http://dev.etunkara.info:18080/max2/api/v1/persons/colors/upload 
+		
+		##### Get venues  (default is near=NY, with "near" params is not given)
 		curl -X GET http://dev.etunkara.info:18080/max2/api/v1/venues?near=MN
