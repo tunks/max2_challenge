@@ -139,4 +139,26 @@ Decision Part 2
        
        mvn clean install -Ddbname="database name" -Ddbuser="database user" -Ddbpassword="database password" -Ddbhost="localhost" -Ddbport="3306"
         
+   4. To run the jar application( default port is 18080)
+      
+      *(option 1)  Run and luanch using maven spring-boot plugin *
+      
+       mvn spring-boot:run
   
+      *(option 2)  Run and lunch using java *
+      
+       java -jar target/max2_challenge-0.0.1-SNAPSHOT.jar
+       
+    5.  To access the end points
+    
+	    ###### Get color counts
+		http://localhost:18080/max2/api/v1/persons/colors
+		
+		###### Get color counts and names of persons
+		http://localhost:18080/max2/api/v1/persons/colors?names=true
+		
+		##### Post data
+		curl -X POST http://localhost:18080/max2/api/v1/persons/colors  -H 'content-type: text/plain' -d 'Duck, Donald, (703)-742-0996, Blue, 23234'
+		
+		##### Upload file
+		curl -X POST -F file=@sample_csv.txt http://localhost:18080/max2/api/v1/persons/colors/upload 
