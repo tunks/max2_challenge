@@ -186,3 +186,6 @@ Decision Part 2
 		
 		##### Get venues  (default is near=NY, with "near" params is not given)
 		curl -X GET http://dev.etunkara.info:18080/max2/api/v1/venues?near=MN
+		
+		
+		##### Note: the code is deployed to my AWS server using Jenkins(http://dev.etunkara.info:8080) that is hooked to this repository
