@@ -5,7 +5,8 @@ Max2 Inc code challenge
 Functional requirements
 ---------------------------------------------
 
-#Part 1
+Part 1
+
 Given input string of the format
 firstname lastname, address, zipcode, phone number, color
 
@@ -39,8 +40,10 @@ firstname lastname, address, zipcode, phone number, color
 			 }]
 8. Use any DB as persistence
 
+---------------------------------------------
 
-#Part 2
+Part 2
+
  1. Implement an API to consume data from FourSquare and returns list of names of venues in the following JSON format
       {
 			"places": [
@@ -48,3 +51,9 @@ firstname lastname, address, zipcode, phone number, color
 				"Mcdonalds",
 				"Chipotle" ]
 	  }
+	  
+#Design
+
+High Level design
+
+![Alt text](max2_challenge_HDL.png?raw=true "Max2 Challenge HLD")

@@ -39,11 +39,20 @@ public class DataReaderService implements DataReaderOperation<ParserResponse> {
 	@Autowired
 	private ParserFactory parserFactory;
 
+	/***
+	 * Read input data of the form of bytes array and parse the data
+	 * 
+	 *  @param bytes 
+	 */
 	@Override
 	public ParserResponse readAsBytes(byte[] bytes) throws DataReaderException {
 		return readAsInputStream(new ByteArrayInputStream(bytes));
 	}
-
+	/***
+	 * Read input data of inputStream and parse the data
+	 * 
+	 *  @param bytes 
+	 */
 	@Override
 	public ParserResponse readAsInputStream(InputStream inputstream) throws DataReaderException {
 		ParserResponseImpl parserResponse = new ParserResponseImpl();

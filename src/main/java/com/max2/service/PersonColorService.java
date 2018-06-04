@@ -24,21 +24,40 @@ public class PersonColorService implements ColorQueryOperation, WriteOperation<P
      private PersonColorRepository personRepository;
 	 
 	 /**
-	  * 
+	  *  Get color counts
+	  *  
+	  *  @return List: List of color counts
 	  */
 	 public List<ColorCount> getAllColorCount() {
 		 return personRepository.getColorCount();
 	 }
 	 
+	 /**
+	  *  Get color counts and list of names of persons
+	  *  
+	  *  @return List: List of color counts and names of persons
+	  */
 	 public List<ColorCountAndPersonList> getAllColorCountAndPersons() {
 		 return personRepository.getColorCountAndPersonsList();
 	 }
 
+	 /***
+	  *  Save PersonColor object 
+	  *  
+	  *  @param object
+	  *  @return PersonColor
+	  */
 	@Override
 	public PersonColor save(PersonColor object) {
 		return personRepository.save(object);
 	}
 
+	 /***
+	  *  Delete PersonColor object
+	  *  
+	  *  @param object
+	  *  @return PersonColor
+	  */
 	@Override
 	public void delete(PersonColor object) {
 		personRepository.delete(object);
