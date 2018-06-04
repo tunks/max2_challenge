@@ -2,7 +2,7 @@
 Max2 Inc code challenge
 
 
-Functional requirements
+### Functional requirements
 ---------------------------------------------
 
 Part 1
