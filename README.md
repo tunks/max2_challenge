@@ -95,14 +95,19 @@ II. Data parsing and formatting  operation
  IV. Data I/O
    1. Data input can be given a raw text file separated by lines or uploaded  as file
    
-   2. Restful API using the controllers provided HTTP endpoints to perform POST and GET requests
+   2. Restful API using the PersonColor controller that provides HTTP end points to perform POST and GET requests
   
 
 ----------------------------------------
+
 Decision Part 2
-  I. 
 
+  I. Implemented a backend API service operation that uses Foursquare API library provided to query the venues
+      ( no need to re-engineer the wheel by using another HTTP rest client library)
+     
+  II. VenueController provides the HTTP end points to search for venues
 
-    
-   
+ ---------------------
+
+# Build and deployment   
    
