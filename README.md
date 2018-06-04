@@ -166,7 +166,7 @@ Decision Part 2
 		##### Get venues
 		curl -X GET http://localhost:18080/max2/api/v1/venues?near=MN
 	
-	 6.  To access the end points over the cloud deployed in AWS
+	 6. To access the end points over the cloud deployed in AWS
     
 	    ###### Get color counts
 		curl -X GET http://dev.etunkara.info:18080/max2/api/v1/persons/colors
@@ -175,7 +175,9 @@ Decision Part 2
 		curl -X GET http://dev.etunkara.info:18080/max2/api/v1/persons/colors?names=true
 		
 		##### Post data
-		curl -X POST http://dev.etunkara.info:18080/max2/api/v1/persons/colors  -H 'content-type: text/plain' -d 'Duck, Donald, (703)-742-0996, Blue, 23234'
+		curl -X POST http://dev.etunkara.info:18080/max2/api/v1/persons/colors \ 
+		-H 'content-type: text/plain' \ 
+		-d 'Duck, Donald, (703)-742-0996, Blue, 23234'
 		
 		##### Upload file
 		curl -X POST -F file=@sample_csv.txt http://dev.etunkara.info:18080/max2/api/v1/persons/colors/upload 
