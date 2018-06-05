@@ -59,7 +59,7 @@ High Level design
 
 ![Alt text](max2_challenge_HDL.png?raw=true "Max2 Challenge HLD")
 
-See the UML class diagram
+See the UML class diagram image in the source code directory
 
 -------------------------------------------------
 Decision Part 1
